@@ -27,10 +27,14 @@
     curl_setopt($request, CURLOPT_HTTPHEADER, $header);
     curl_setopt($request, CURLOPT_USERPWD, $username . ":" . $password);
     curl_setopt($request, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($request);
+    if(!$response) return false;
     return json_decode($response, true);
   }
 
-  echo getAccessToken();
+  $token = getAccessToken();
+
+  if($token) echo $token["access_token"];
 
 ?>
