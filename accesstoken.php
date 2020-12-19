@@ -5,7 +5,7 @@
     $returnArray = array();
     foreach($data as $line) {
         $explode = explode("=", $line);
-        $returnArray[$explode[0]] = preg_replace( "/\n/", "", $explode[1] );
+        $returnArray[$explode[0]] = preg_replace( "/\n/", "", $explode[1]);
     }
     return $returnArray;
   }
