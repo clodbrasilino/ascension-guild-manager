@@ -11,7 +11,16 @@
     <body>
         <div id="page" class="container">
             <div id="header" class="row">
-                Header
+                <div id="left-menu" class="col-4">
+                    Left Menu
+                </div>
+                <div id="brand" class="col">
+                    Brand
+                </div>
+                <div id="right-menu" class="col-4">
+                    Right Menu
+                </div>
+                
             </div>
             <div id="content" class="row">
                 Content
