@@ -1,36 +1,22 @@
-<?php 
-
-  function getData($file) {
-    $data = file($file);
-    $returnArray = array();
-    foreach($data as $line) {
-        $explode = explode("=", $line);
-        $returnArray[$explode[0]] = preg_replace( "/\n/", "", $explode[1] );
-    }
-    return $returnArray;
-  }
-
-  function getAccessToken(){
-    $credentials = getData('key.txt');
-    $username = $credentials["client_id"];
-    $password = $credentials["client_secret"];
-    $url = "https://us.battle.net/oauth/token";
-    $headers = [
-      "Content-Type: application/x-www-form-urlencoded",
-    ];
-    $payload = [
-      'grant_type' => 'client_credentials',
-    ];
-    $request = curl_init();
-    curl_setopt($request, CURLOPT_URL, $url);
-    curl_setopt($request, CURLOPT_POST, 1);
-    curl_setopt($request, CURLOPT_HTTPHEADER, $header);
-    curl_setopt($request, CURLOPT_USERPWD, $username . ":" . $password);
-    curl_setopt($request, CURLOPT_POSTFIELDS, $payload);
-    curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($request);
-    if(!$response) return false;
-    $token = json_decode($response, true);
-    if($token) return $token["access_token"];
-  }
-?>
+<?php require_once('accesstoken.php'); ?>
+<!doctype html>
+<html lang="pt_BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Gerenciador de Grupos - Ascension Guild</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link href="/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="page" class="container">
+            <div id="header" class="row">
+            </div>
+            <div id="content" class="row">
+            </div>
+            <div id="footer" class="row">
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>
